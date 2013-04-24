@@ -14,8 +14,8 @@
     NSMutableArray *data;
     int total;
     BOOL isList;
-    IBOutlet UIButton *toggle;
-
+    IBOutlet UIBarButtonItem *toggle;
+    
     
 }
 @end
@@ -36,20 +36,25 @@
     for (int i = 0; i < total; i ++) {
         [data addObject:[NSString stringWithFormat:@"Item %d",i+1]];
     }
-   
+    [self.navigationItem setTitle:@"Grid"];
+    [toggle setTarget:self];
+    [toggle setAction:@selector(list:)];
     
 }
-- (IBAction)list:(id)sender {
+- (void)list:(id)sender {
     
    
     if (isList) {
         isList = NO;
-        [toggle setTitle:@"List" forState:UIControlStateNormal];
+        [sender setTitle:@"List"];
+        [self.navigationItem setTitle:@"Grid"];
     }
     else
     {   isList = YES;
-        [toggle setTitle:@"Grid" forState:UIControlStateNormal];
+        [sender setTitle:@"Grid"];
+        [self.navigationItem setTitle:@"List"];
     }
+   
     [table reloadData];
 }
 
@@ -90,6 +95,7 @@
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             
         }
+        
         [table setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
         [[cell textLabel]setText:[data objectAtIndex:indexPath.row]];
         return cell;
