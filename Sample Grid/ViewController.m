@@ -12,6 +12,7 @@
 {
     IBOutlet UITableView *table;
     NSMutableArray *data;
+    int total;
     
 }
 @end
@@ -25,8 +26,10 @@
     [table setDelegate:self];
     [table setDataSource:self];
     [table setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    data = [NSMutableArray arrayWithCapacity:36];
-    for (int i = 0; i < 36; i ++) {
+    total = [[[NSBundle mainBundle]objectForInfoDictionaryKey:@"TOTAL_NUMBER_OF_ITEMS"]intValue];
+    
+    data = [NSMutableArray arrayWithCapacity:total];
+    for (int i = 0; i < total; i ++) {
         [data addObject:[NSString stringWithFormat:@"Item %d",i+1]];
     }
    
@@ -43,9 +46,20 @@
     }
     
     [[cell item1]setTitle:[data objectAtIndex:indexPath.row*3] forState:UIControlStateNormal];
-    [[cell item2]setTitle:[data objectAtIndex:indexPath.row*3+1] forState:UIControlStateNormal];
+    if (indexPath.row*3+1 < total) {
+         [[cell item2]setTitle:[data objectAtIndex:indexPath.row*3+1] forState:UIControlStateNormal];
+    }
+    else
+    {
+        [[cell item2]setHidden:YES];
+    }
+    if (indexPath.row*3+2 <= total-1) {
     [[cell item3]setTitle:[data objectAtIndex:indexPath.row*3+2] forState:UIControlStateNormal];
-
+    }
+    else
+    {
+        [[cell item3]setHidden:YES];
+    }
     
     return cell;
 }
@@ -59,8 +73,10 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 12;
+{   if(total%3 == 0)
+        return total/3;
+    else
+        return total/3 + 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
