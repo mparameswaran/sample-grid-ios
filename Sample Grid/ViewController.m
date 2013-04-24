@@ -13,6 +13,9 @@
     IBOutlet UITableView *table;
     NSMutableArray *data;
     int total;
+    BOOL isList;
+    IBOutlet UIButton *toggle;
+
     
 }
 @end
@@ -22,6 +25,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    isList = NO;
 	// Do any additional setup after loading the view, typically from a nib.
     [table setDelegate:self];
     [table setDataSource:self];
@@ -35,33 +39,62 @@
    
     
 }
+- (IBAction)list:(id)sender {
+    
+   
+    if (isList) {
+        isList = NO;
+        [toggle setTitle:@"List" forState:UIControlStateNormal];
+    }
+    else
+    {   isList = YES;
+        [toggle setTitle:@"Grid" forState:UIControlStateNormal];
+    }
+    [table reloadData];
+}
+
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"GridCell";
-    GridCell *cell = (GridCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-        cell = [GridCell cellFromNib:CellIdentifier];
-        [cell setDelegate:self];
-    }
-    
-    [[cell item1]setTitle:[data objectAtIndex:indexPath.row*3] forState:UIControlStateNormal];
-    if (indexPath.row*3+1 < total) {
-         [[cell item2]setTitle:[data objectAtIndex:indexPath.row*3+1] forState:UIControlStateNormal];
+    if (!isList) {
+        static NSString *CellIdentifier = @"GridCell";
+        GridCell *cell = (GridCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [GridCell cellFromNib:CellIdentifier];
+            [cell setDelegate:self];
+        }
+        [table setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        [[cell item1]setTitle:[data objectAtIndex:indexPath.row*3] forState:UIControlStateNormal];
+        if (indexPath.row*3+1 < total) {
+            [[cell item2]setTitle:[data objectAtIndex:indexPath.row*3+1] forState:UIControlStateNormal];
+        }
+        else
+        {
+            [[cell item2]setHidden:YES];
+        }
+        if (indexPath.row*3+2 <= total-1) {
+            [[cell item3]setTitle:[data objectAtIndex:indexPath.row*3+2] forState:UIControlStateNormal];
+        }
+        else
+        {
+            [[cell item3]setHidden:YES];
+        }
+        
+        return cell;
     }
     else
     {
-        [[cell item2]setHidden:YES];
-    }
-    if (indexPath.row*3+2 <= total-1) {
-    [[cell item3]setTitle:[data objectAtIndex:indexPath.row*3+2] forState:UIControlStateNormal];
-    }
-    else
-    {
-        [[cell item3]setHidden:YES];
+        static NSString *CellIdentifier = @"ListCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            
+        }
+        [table setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+        [[cell textLabel]setText:[data objectAtIndex:indexPath.row]];
+        return cell;
     }
     
-    return cell;
 }
 
 -(void)itemTapped:(id)sender
@@ -73,15 +106,30 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{   if(total%3 == 0)
-        return total/3;
+{
+    if (!isList) {
+        if(total%3 == 0)
+            return total/3;
+        else
+            return total/3 + 1;
+    }
     else
-        return total/3 + 1;
+    {
+        return [data count];
+    }
+   
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 120;
+    if (!isList) {
+        return 120;
+    }
+    else
+    {
+        return 60;
+    }
+  
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
