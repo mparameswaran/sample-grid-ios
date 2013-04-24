@@ -25,7 +25,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    isList = NO;
+    isList = [[[NSBundle mainBundle]objectForInfoDictionaryKey:@"IS_LIST"]boolValue];
 	// Do any additional setup after loading the view, typically from a nib.
     [table setDelegate:self];
     [table setDataSource:self];
