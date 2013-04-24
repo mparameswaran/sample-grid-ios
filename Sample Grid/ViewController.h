@@ -2,12 +2,12 @@
 //  ViewController.h
 //  Sample Grid
 //
-//  Created by Aravind Ramalingam on 24/04/13.
+//  Created by Madan Parameswaran on 24/04/13.
 //  Copyright (c) 2013 MobileBrigade. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ViewController : UIViewController
+#import "GridCell.h"
+@interface ViewController : UIViewController<UITableViewDelegate, UITableViewDataSource,GridCellDelegate>
 
 @end

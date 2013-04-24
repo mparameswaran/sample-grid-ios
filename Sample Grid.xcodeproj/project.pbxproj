@@ -23,6 +23,8 @@
 		694E488D1727C0CC00CFB753 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694E48681727C0CC00CFB753 /* Foundation.framework */; };
 		694E48951727C0CC00CFB753 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 694E48931727C0CC00CFB753 /* InfoPlist.strings */; };
 		694E48981727C0CC00CFB753 /* Sample_GridTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 694E48971727C0CC00CFB753 /* Sample_GridTests.m */; };
+		694E48A21727C11400CFB753 /* GridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 694E48A11727C11400CFB753 /* GridCell.xib */; };
+		694E48A51727C1DE00CFB753 /* GridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 694E48A41727C1DE00CFB753 /* GridCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,9 @@
 		694E48941727C0CC00CFB753 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		694E48961727C0CC00CFB753 /* Sample_GridTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sample_GridTests.h; sourceTree = "<group>"; };
 		694E48971727C0CC00CFB753 /* Sample_GridTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sample_GridTests.m; sourceTree = "<group>"; };
+		694E48A11727C11400CFB753 /* GridCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GridCell.xib; sourceTree = "<group>"; };
+		694E48A31727C1DE00CFB753 /* GridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridCell.h; sourceTree = "<group>"; };
+		694E48A41727C1DE00CFB753 /* GridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +92,9 @@
 		694E48571727C0CC00CFB753 = {
 			isa = PBXGroup;
 			children = (
+				694E48A31727C1DE00CFB753 /* GridCell.h */,
+				694E48A41727C1DE00CFB753 /* GridCell.m */,
+				694E48A11727C11400CFB753 /* GridCell.xib */,
 				694E486C1727C0CC00CFB753 /* Sample Grid */,
 				694E48901727C0CC00CFB753 /* Sample GridTests */,
 				694E48651727C0CC00CFB753 /* Frameworks */,
@@ -236,6 +244,7 @@
 				694E487B1727C0CC00CFB753 /* Default@2x.png in Resources */,
 				694E487D1727C0CC00CFB753 /* Default-568h@2x.png in Resources */,
 				694E48801727C0CC00CFB753 /* MainStoryboard.storyboard in Resources */,
+				694E48A21727C11400CFB753 /* GridCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +282,7 @@
 				694E48731727C0CC00CFB753 /* main.m in Sources */,
 				694E48771727C0CC00CFB753 /* AppDelegate.m in Sources */,
 				694E48831727C0CC00CFB753 /* ViewController.m in Sources */,
+				694E48A51727C1DE00CFB753 /* GridCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

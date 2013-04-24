@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  Sample Grid
 //
-//  Created by Aravind Ramalingam on 24/04/13.
+//  Created by Madan Parameswaran on 24/04/13.
 //  Copyright (c) 2013 MobileBrigade. All rights reserved.
 //
 
